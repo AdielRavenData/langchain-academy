@@ -34,7 +34,11 @@ def divide(a: int, b: int) -> float:
 tools = [add, multiply, divide]
 
 # Define LLM with bound tools
-llm = ChatOpenAI(model="gpt-4o")
+from dotenv import load_dotenv
+from langchain.chat_models import init_chat_model
+load_dotenv()
+llm = init_chat_model("google_genai:gemini-2.0-flash")
+# llm = ChatOpenAI(model="gpt-4o")
 llm_with_tools = llm.bind_tools(tools)
 
 # System message
